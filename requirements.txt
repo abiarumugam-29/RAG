@@ -1,0 +1,10 @@
+streamlit
+pypdf
+langchain-core
+langchain-text-splitters
+langchain-huggingface
+langchain-chroma
+langchain-google-genai
+chromadb
+sentence-transformers
+torch
