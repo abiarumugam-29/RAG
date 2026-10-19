@@ -308,7 +308,7 @@ if process_clicked:
                 uploaded_bytes = uploaded_file.getvalue()
                 file_hash = hashlib.sha256(uploaded_bytes).hexdigest()
 
-                reader = PdfReader(uploaded_bytes)
+                reader = PdfReader(uploaded_file)
                 documents = []
                 pages_with_text = 0
 
