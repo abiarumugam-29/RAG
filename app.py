@@ -345,10 +345,10 @@ if process_clicked:
                     st.stop()
 
              
-embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/gemini-embedding-001",
-    google_api_key=st.session_state.api_key,
-)
+                embeddings = GoogleGenerativeAIEmbeddings(
+                model="models/gemini-embedding-001",
+                google_api_key=st.session_state.api_key,
+                )
 
 
                 store = Chroma.from_documents(
