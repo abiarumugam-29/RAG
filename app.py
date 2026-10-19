@@ -6,7 +6,7 @@ import streamlit as st
 from pypdf import PdfReader
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_chroma import Chroma
 from langchain_google_genai import ChatGoogleGenerativeAI
 
@@ -23,7 +23,7 @@ st.title("📄 PDF RAG Chatbot")
 st.caption("Ask questions using only the content of your uploaded PDF.")
 
 FALLBACK = "Sorry, I couldn't find the answer in the uploaded PDF."
-EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+EMBEDDING_MODEL = "models/gemini-embedding-001"
 CHUNK_SIZE = 800
 CHUNK_OVERLAP = 150
 RETRIEVAL_K = 4
@@ -344,9 +344,12 @@ if process_clicked:
                     st.error("No text chunks were created.")
                     st.stop()
 
-                embeddings = HuggingFaceEmbeddings(
-                    model_name=EMBEDDING_MODEL
-                )
+             
+embeddings = GoogleGenerativeAIEmbeddings(
+    model="models/gemini-embedding-001",
+    google_api_key=st.session_state.api_key,
+)
+
 
                 store = Chroma.from_documents(
                     documents=chunks,
